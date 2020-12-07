@@ -1,5 +1,74 @@
 const _ = require('lodash')
+const axios = require('axios')
+const jose = require('node-jose')
 const { logger } = require('./logger')
+
+/**
+ * WIP
+ * @param {} payload
+ * @param {*} singpassPubkeyUrl
+ * @param {*} singpassPubkeyId
+ */
+const verifyPayload = async (payload, singpassPubkeyUrl, singpassPubkeyId) => {
+  logger.debug('Start verifying the payload')
+  const keys = await fetchKeys(singpassPubkeyUrl)
+  logger.debug(
+    'Received keys from a public source',
+    keys.length,
+    'source them in a keystore'
+  )
+  return jose.JWK.asKeyStore(keys)
+    .then(keystore => {
+      logger.debug(
+        'Get pubkey to createVerify the payload based on pubkey',
+        singpassPubkeyId
+      )
+      const key = keystore.get(singpassPubkeyId)
+      return jose.JWS.createVerify(key)
+        .verify(payload.toString())
+        .then(res => {
+          logger.debug(
+            'verified ok ',
+            Object.keys(res),
+            'start decoding the payload'
+          )
+          const payload = JSON.parse(res.payload.toString())
+          logger.debug('payload decoded and returned from verifyJWS', payload)
+          return payload
+        })
+    })
+    .catch(err => {
+      logger.error('Could not verify a payload', err, err.stack)
+    })
+}
+
+/**
+ * Download public keys verify and get the payload
+ * @param {SingPass SAML Gov Sg} url
+ */
+const fetchKeys = async (
+  url = 'https://stg-saml-internet.singpass.gov.sg/mga/sps/oauth/oauth20/jwks/SingPassOP'
+) => {
+  logger.debug('Trying to fetch public keys from ', url)
+  return axios
+    .get(url, {
+      headers: { 'content-type': 'application/json' }
+    })
+    .then(response => {
+      const keys = response.data
+      logger.debug('Received keys', keys)
+      logger.debug('All received keys count:', keys.keys.length)
+      logger.debug('status', response.status, response.statusText)
+      return keys.keys
+    })
+    .catch(error => {
+      logger.warn('Could not fetch keys', error.data)
+      return {
+        status: 'error',
+        details: 'Could not fetch keys due to ' + error.data
+      }
+    })
+}
 
 /**
  *
@@ -48,5 +117,7 @@ const setCharAll = (str, chr) => {
 }
 
 module.exports = {
-  maskNRIC
+  maskNRIC,
+  verifyPayload,
+  fetchKeys
 }
