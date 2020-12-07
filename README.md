@@ -1,7 +1,6 @@
-## Build/FOSSA Status
+## Build Status
 
-[![Build Status](https://travis-ci.org/miktam/sizeof.svg?branch=master)](https://travis-ci.org/aprimerose/ap-singpass-helpers) [![Dependency Status](https://david-dm.org/aprimerose/ap-singpass-helpers.svg)](https://david-dm.org/aprimerose/ap-singpass-helpers)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Faprimerose%2Fap-singpass-helpers.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Faprimerose%2Fap-singpass-helpers?ref=badge_shield)
+[![Build Status](https://travis-ci.org/miktam/sizeof.svg?branch=master)](https://travis-ci.org/aprimerose/ap-singpass-helpers)
 
 ### Helpers for SingPass and MyInfo
 
@@ -13,14 +12,14 @@
 
 ### Examples
 
-#### ES5
-
-```javascript
-```
+NRIC information is a sensitive one, so helper is provided to mask NRIC, by using maskNRIC function
 
 #### ES6
 
 ```javascript
+const helper = require('ap-singpass-helpers)
+const NRIC = 'S3000941Z'
+const data = maskNRIC(NRIC) // data equals '****0941Z'
 ```
 
 ### Authors
