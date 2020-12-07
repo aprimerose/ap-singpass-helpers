@@ -1,0 +1,29 @@
+{
+  "name": "ap-singpass-helpers",
+  "version": "1.0.0",
+  "description": "Helpers to work with SingPass and MyInfo",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/standard; ./node_modules/.bin/mocha -R tap"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aprimerose/ap-singpass-helpers.git"
+  },
+  "keywords": [
+    "singpass",
+    "encryption",
+    "myinfo"
+  ],
+  "author": "Andrei Karpushonak, Aprimerose",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/aprimerose/ap-singpass-helpers/issues"
+  },
+  "homepage": "https://github.com/aprimerose/ap-singpass-helpers#readme",
+  "dependencies": {
+    "mocha": "^8.2.1",
+    "should": "^13.2.3",
+    "standard": "^16.0.3"
+  }
+}
