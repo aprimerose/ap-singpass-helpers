@@ -29,7 +29,7 @@ NRIC information is a sensitive one, so helper is provided to mask NRIC, by usin
 ```javascript
 const helper = require('ap-singpass-helpers)
 const NRIC = 'S3000941Z'
-const data = maskNRIC(NRIC) // data equals '****0941Z'
+const data = helper.maskNRIC(NRIC) // data equals '****0941Z' now
 ```
 
 ### Authors
