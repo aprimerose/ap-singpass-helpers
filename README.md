@@ -23,6 +23,10 @@
 ```javascript
 ```
 
+### Authors
+
+[Aprimerose Pte Ltd](https://aprimerose.com), Singapore
+
 ### Licence
 
 GPLv3.0
