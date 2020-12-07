@@ -4,7 +4,17 @@
 
 ### Helpers for SingPass and MyInfo
 
+Digital ID and e-KYC are greatly simplified by using [SingPass and MyInfo](https://www.mas.gov.sg/development/fintech/technologies---digital-id-and-e-kyc), allowing such use cases as:
+
+- On-boarding of new customers
+- Authentication of customers
+- Digital authorisations and signatures
+
+This set of tools is prepared to integrate SingPass easier.
+
 ### Limitations
+
+SingPass application works only for Singaporean citizens and PR.
 
 ### Installation
 
