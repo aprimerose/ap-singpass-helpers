@@ -1,6 +1,7 @@
 ## Build Status
 
 [![Build Status](https://travis-ci.org/miktam/sizeof.svg?branch=master)](https://travis-ci.org/aprimerose/ap-singpass-helpers)
+[![Coverage](https://img.shields.io/coveralls/aprimerose/ap-singpass-helpers.svg?style=flat-square)](https://coveralls.io/r/aprimerose/ap-singpass-helpers)
 
 ### Helpers for SingPass and MyInfo
 
