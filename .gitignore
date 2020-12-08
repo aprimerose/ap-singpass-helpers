@@ -6,7 +6,7 @@ lib-cov
 *.out
 *.pid
 *.gz
-
+coverage
 pids
 logs
 results
@@ -15,3 +15,6 @@ npm-debug.log
 node_modules
 .idea
 .vscode
+
+.nyc_output
+coverage.lcov
