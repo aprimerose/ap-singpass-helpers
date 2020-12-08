@@ -39,6 +39,7 @@ const verifyPayload = async (payload, singpassPubkeyUrl, singpassPubkeyId) => {
     })
     .catch(err => {
       logger.error('Could not verify a payload', err, err.stack)
+      return new Error('Could not verify a payload', err, err.stack)
     })
 }
 
@@ -63,10 +64,7 @@ const fetchKeys = async (
     })
     .catch(error => {
       logger.warn('Could not fetch keys', error.data)
-      return {
-        status: 'error',
-        details: 'Could not fetch keys due to ' + error.data
-      }
+      return new Error('Could not fetch keys')
     })
 }
 
