@@ -1,5 +1,4 @@
 const { maskNRIC, verifyPayload, fetchKeys } = require('../index')
-const logger = require('../logger')
 
 /* global describe, it */
 
@@ -34,25 +33,22 @@ describe('SingPass helpers', () => {
     data.should.equal('****0941Z')
   })
 
-  it.skip('verify payload', async () => {
+  it('verify payload - should fail with the wrong input', async () => {
     const URL =
       'https://stg-saml-internet.singpass.gov.sg/mga/sps/oauth/oauth20/jwks/SingPassOP'
     const KEY_ID = 'rnpBA3SUQ6TEkMaVX83IV40S9Fp6yxX-F83phMO85qI'
     const payload = await verifyPayload(
-      singPassProvidedInfo.id_token, // TODO provide correct payload
+      singPassProvidedInfo.id_token,
       URL,
       KEY_ID
     )
-    payload.should.equal('this should fail - WIP')
+    payload.should.be.instanceOf(Error)
+    payload.message.should.equal('Could not verify a payload')
   })
 
-  it.skip('fetch public keys - you have to be whitelisted to fetch it!', async () => {
-    return fetchKeys()
-      .then(result => {
-        result.length.should.equal(7)
-      })
-      .catch(err => {
-        logger.error('Error in test', err)
-      })
+  it('fetch public keys - should fail as URL is wrong', async () => {
+    return fetchKeys('wrong url').catch(err => {
+      err.should.be.instanceOf(Error)
+    })
   })
 })
