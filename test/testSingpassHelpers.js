@@ -1,4 +1,5 @@
 const { maskNRIC, verifyPayload, fetchKeys } = require('../index')
+const { ERROR_INCORRECT_URL } = require('../constants')
 
 /* global describe, it */
 
@@ -33,7 +34,8 @@ describe('SingPass helpers', () => {
     data.should.equal('****0941Z')
   })
 
-  it('verify payload - should fail with the wrong input', async () => {
+  // works only in whitelisted env
+  it.skip('verify payload - should fail with the wrong input', async () => {
     const URL =
       'https://stg-saml-internet.singpass.gov.sg/mga/sps/oauth/oauth20/jwks/SingPassOP'
     const KEY_ID = 'rnpBA3SUQ6TEkMaVX83IV40S9Fp6yxX-F83phMO85qI'
@@ -49,6 +51,7 @@ describe('SingPass helpers', () => {
   it('fetch public keys - should fail as URL is wrong', async () => {
     return fetchKeys('wrong url').catch(err => {
       err.should.be.instanceOf(Error)
+      err.message.should.equal(ERROR_INCORRECT_URL)
     })
   })
 })
