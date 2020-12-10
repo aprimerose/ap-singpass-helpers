@@ -12,7 +12,11 @@
     "type": "git",
     "url": "git+https://github.com/aprimerose/ap-singpass-helpers.git"
   },
-  "keywords": ["singpass", "encryption", "myinfo"],
+  "keywords": [
+    "singpass",
+    "encryption",
+    "myinfo"
+  ],
   "author": "Andrei Karpushonak, Aprimerose",
   "license": "GPL-3.0-or-later",
   "bugs": {
@@ -26,6 +30,7 @@
     "node-jose": "^2.0.0",
     "should": "^13.2.3",
     "standard": "^16.0.3",
+    "validator": "^13.5.2",
     "winston": "^3.3.3"
   },
   "devDependencies": {

@@ -1,6 +1,8 @@
 const _ = require('lodash')
 const axios = require('axios')
 const jose = require('node-jose')
+const validator = require('validator')
+const { ERROR_INCORRECT_URL } = require('./constants')
 const { logger } = require('./logger')
 
 /**
@@ -51,6 +53,9 @@ const fetchKeys = async (
   url = 'https://stg-saml-internet.singpass.gov.sg/mga/sps/oauth/oauth20/jwks/SingPassOP'
 ) => {
   logger.debug('Trying to fetch public keys from ', url)
+  if (!validator.isURL(url)) {
+    throw new Error(ERROR_INCORRECT_URL)
+  }
   return axios
     .get(url, {
       headers: { 'content-type': 'application/json' }
