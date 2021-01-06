@@ -29,12 +29,18 @@ NRIC information is a sensitive one, so helper is provided to mask NRIC, by usin
 #### ES6
 
 ```javascript
-const helper = require('ap-singpass-helpers)
+const singpassHelper = require('ap-singpass-helpers)
 
-const payload = await helper.verifyPayload('payload to verify', 'validUrlToFetchJWKS keys from', 'validPubKeyId') // return verified payload
+// creates nonce, max 255 characters, alphanumeric
+const nonce = singpassHelper.createNonce()
+
+// creates state, max 255 characters, base64 encoded
+const state = singpassHelper.createState()
+
+const payload = await singpassHelper.verifyPayload('payload to verify', 'validUrlToFetchJWKS keys from', 'validPubKeyId') // return verified payload
 
 const NRIC = 'S3000941Z'
-const data = helper.maskNRIC(NRIC) // data equals '****0941Z' now
+const data = singpassHelper.maskNRIC(NRIC) // data equals '****0941Z' now
 ```
 
 ### Authors
