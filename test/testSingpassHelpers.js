@@ -1,4 +1,10 @@
-const { maskNRIC, verifyPayload, fetchKeys } = require('../index')
+const {
+  maskNRIC,
+  verifyPayload,
+  fetchKeys,
+  createState,
+  createNonce
+} = require('../index')
 const { ERROR_INCORRECT_URL } = require('../constants')
 
 /* global describe, it */
@@ -53,5 +59,15 @@ describe('SingPass helpers', () => {
       err.should.be.instanceOf(Error)
       err.message.should.equal(ERROR_INCORRECT_URL)
     })
+  })
+
+  it('create and test nonce', () => {
+    const nonce = createNonce()
+    nonce.should.not.equal(null)
+  })
+
+  it('create and test state', () => {
+    const state = createState()
+    state.should.not.equal(null)
   })
 })

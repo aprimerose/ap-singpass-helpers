@@ -30,6 +30,7 @@
     "node-jose": "^2.0.0",
     "should": "^13.2.3",
     "standard": "^16.0.3",
+    "uuidv4": "^6.2.6",
     "validator": "^13.5.2",
     "winston": "^3.3.3"
   },

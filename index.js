@@ -2,8 +2,24 @@ const _ = require('lodash')
 const axios = require('axios')
 const jose = require('node-jose')
 const validator = require('validator')
+const { uuid } = require('uuidv4')
 const { ERROR_INCORRECT_URL } = require('./constants')
 const { logger } = require('./logger')
+
+/**
+ * Creates nonce, max 255 characters, alphanumeric
+ */
+const createNonce = () => {
+  return uuid()
+}
+
+/**
+ * Creates unique, and non-guessable value
+ * maximum of 255 characters, base64-encoded
+ */
+const createState = () => {
+  return jose.util.base64url.encode(uuid(), 'utf8')
+}
 
 /**
  * WIP
@@ -122,5 +138,7 @@ const setCharAll = (str, chr) => {
 module.exports = {
   maskNRIC,
   verifyPayload,
-  fetchKeys
+  fetchKeys,
+  createNonce,
+  createState
 }
