@@ -1,12 +1,12 @@
 {
   "name": "ap-singpass-helpers",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Helpers to work with SingPass and MyInfo",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/standard; ./node_modules/.bin/mocha -R tap",
     "lint": "./node_modules/.bin/standard",
-    "coverage": "./node_modules/.bin/nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov --token=0b12795e-b594-4941-bf70-4664bb233a48"
+    "coverage": "nyc npm test; ./node_modules/.bin/nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov --token=0b12795e-b594-4941-bf70-4664bb233a48"
   },
   "repository": {
     "type": "git",
