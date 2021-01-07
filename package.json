@@ -1,6 +1,6 @@
 {
   "name": "ap-singpass-helpers",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Helpers to work with SingPass and MyInfo",
   "main": "index.js",
   "scripts": {
