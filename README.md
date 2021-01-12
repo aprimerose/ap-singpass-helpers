@@ -34,6 +34,12 @@ NRIC information is a sensitive one, so helper is provided to mask NRIC, by usin
 ```javascript
 const singpassHelper = require('ap-singpass-helpers')
 
+const incorrectPEMFileContent = `-----BEGIN PRIVATE KEY-----
+Iwillneverstoreprivatekeyonlinerepeat10000x
+-----END PRIVATE KEY-----`
+// useful for JSON Web Key Set (JWKS) endpoint
+const jwks = await singpassHelper.getPubKeyFromPEM(incorrectPEMFileContent)
+
 // creates nonce, max 255 characters, alphanumeric
 const nonce = singpassHelper.createNonce()
 

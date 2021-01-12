@@ -1,11 +1,15 @@
+const path = require('path')
 const {
   maskNRIC,
   verifyPayload,
   fetchKeys,
   createState,
-  createNonce
+  createNonce,
+  getPubKeyFromPEM,
+  loadPubKeyFromFile
 } = require('../index')
 const { ERROR_INCORRECT_URL } = require('../constants')
+const { logger } = require('../logger')
 
 /* global describe, it */
 
@@ -69,5 +73,22 @@ describe('SingPass helpers', () => {
   it('create and test state', () => {
     const state = createState()
     state.should.not.equal(null)
+  })
+
+  it('Load JWKS key from wrongly constructed PEM should fail', async () => {
+    const wrongPEMFileContent = `-----BEGIN PRIVATE KEY-----
+    Iwillneverstoreprivatekeyonlinerepeat10000x
+    -----END PRIVATE KEY-----`
+    logger.debug('get pem and return jwk key')
+    const res = await getPubKeyFromPEM(wrongPEMFileContent)
+    res.status.should.equal('error')
+  })
+
+  it('Load JWKS key from file', async () => {
+    const fileLocation = path.join(__dirname, '/keys/jkws_keys.json')
+    logger.debug('File with JSON is here:', fileLocation)
+    const res = await loadPubKeyFromFile(fileLocation)
+    logger.info('Result', res)
+    res.keystore.should.not.equal(null)
   })
 })
