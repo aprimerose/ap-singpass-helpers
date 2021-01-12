@@ -1,0 +1,17 @@
+{
+  "keystore": {
+    "keys": [
+      {
+        "kty": "RSA",
+        "kid": "wPDIXGzIyAkyM8JrZdtgNPKg9bNP-bASMAb0wUlQEjs",
+        "n": "r7zAz4n712fhAUUjx7CibrG068i7PLOPXZdTIuT-pV3pi61gQCGUECTtQ4kTvon_iZD9slgSUYyFq9-EEFrWMLVs2wwzHkGiKiY9QL9rjN9BhYNFaNZOc7Ldd5YdyDYsU9lxOmXqKW9lCEf2xMKZwz0DQiaqyacTUP4SErfB4p3ajdwcgSrdKzyyMVNwPlM0gjC-LYTki9C6zpRmU7H2Lfcn7Xg_rFnWjjR-16gEKNNfu7FO59CYu47IwDwNSQsThcCkyJmWFdL9CvM4LdHau8BelbFRM3dc-iRnnzUR6ZaZEO8IFA8exxzDCcq22KDSFrHHFfKwovOc25lu9T-Z8Q",
+        "e": "AQAB"
+      }
+    ]
+  },
+  "length": 2048,
+  "kty": "RSA",
+  "kid": "wPDIXGzIyAkyM8JrZdtgNPKg9bNP-bASMAb0wUlQEjs",
+  "use": "",
+  "alg": ""
+}

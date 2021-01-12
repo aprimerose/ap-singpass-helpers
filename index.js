@@ -1,6 +1,7 @@
 const _ = require('lodash')
 const axios = require('axios')
 const jose = require('node-jose')
+const fs = require('fs')
 const validator = require('validator')
 const { uuid } = require('uuidv4')
 const { ERROR_INCORRECT_URL } = require('./constants')
@@ -135,10 +136,55 @@ const setCharAll = (str, chr) => {
   return str.replace(/./g, chr)
 }
 
+/**
+ * Create public key from PEM
+ * Caution: input parameter is PEM content - never share/commit it and keep it safe
+ * @param {content of PEM} pk
+ */
+const getPubKeyFromPEM = pk => {
+  const keystore = jose.JWK.createKeyStore()
+
+  return keystore
+    .add(pk, 'pem')
+    .then(result => {
+      logger.debug('JWK.Key:', result)
+    })
+    .catch(err => {
+      logger.warn('Could not add a key', err)
+      return {
+        status: 'error',
+        message: 'Could not get pubkey from PEM: ' + err
+      }
+    })
+}
+
+/**
+ * Create public key from PEM
+ * Caution: input parameter is PEM content - never share/commit it and keep it safe
+ * @param {content of PEM} pk
+ */
+const loadPubKeyFromFile = filePath => {
+  const input = fs.readFileSync(filePath, 'utf8')
+  return jose.JWK.asKey(input, 'json')
+    .then(result => {
+      logger.debug('Got JWK.Key from ' + filePath)
+      return result
+    })
+    .catch(err => {
+      logger.warn('Could not add a key', err)
+      return {
+        status: 'error',
+        message: 'Could not get pubkey from local file: ' + err
+      }
+    })
+}
+
 module.exports = {
   maskNRIC,
   verifyPayload,
   fetchKeys,
   createNonce,
-  createState
+  createState,
+  getPubKeyFromPEM,
+  loadPubKeyFromFile
 }
