@@ -16,7 +16,9 @@ This set of tools is prepared to integrate SingPass easier.
 ### Generate ECDH key
 
 ```bash
-openssl ecparam -name P-256 -genkey -noout -out key.pem
+ openssl genpkey -algorithm EC -out ecPrivKey.pem \
+        -pkeyopt ec_paramgen_curve:P-256 \
+        -pkeyopt ec_param_enc:named_curve
 ```
 
 ### Limitations of SingPass
@@ -40,11 +42,12 @@ NRIC information is a sensitive one, so helper is provided to mask NRIC, by usin
 ```javascript
 const singpassHelper = require('ap-singpass-helpers')
 
-const incorrectPEMFileContent = `-----BEGIN PRIVATE KEY-----
-Iwillneverstoreprivatekeyonlinerepeat10000x
------END PRIVATE KEY-----`
-// useful for JSON Web Key Set (JWKS) endpoint
-const jwks = await singpassHelper.getPubKeyFromPEM(incorrectPEMFileContent)
+const pubKey = `-----BEGIN PUBLIC KEY-----
+    MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE1xc5NSTs3KLltnTtuyiHYI+HeFjQ
+    SQh+4MWQvpenh1LrxQ/uvUXO0auGSp0GR5cyQLRh66HFzof3ZFV3rk4UzA==
+    -----END PUBLIC KEY-----`
+
+const jwk = await getPubKeyFromPEM(pubKey)
 
 // creates nonce, max 255 characters, alphanumeric
 const nonce = singpassHelper.createNonce()

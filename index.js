@@ -138,7 +138,6 @@ const setCharAll = (str, chr) => {
 
 /**
  * Create public key from PEM
- * Caution: input parameter is PEM content - never share/commit it and keep it safe
  * @param {content of PEM} pk
  */
 const getPubKeyFromPEM = pk => {
@@ -148,6 +147,7 @@ const getPubKeyFromPEM = pk => {
     .add(pk, 'pem')
     .then(result => {
       logger.debug('JWK.Key:', result)
+      return result
     })
     .catch(err => {
       logger.warn('Could not add a key', err)
