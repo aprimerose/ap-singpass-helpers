@@ -75,13 +75,14 @@ describe('SingPass helpers', () => {
     state.should.not.equal(null)
   })
 
-  it('Load JWKS key from wrongly constructed PEM should fail', async () => {
-    const wrongPEMFileContent = `-----BEGIN PRIVATE KEY-----
-    Iwillneverstoreprivatekeyonlinerepeat10000x
-    -----END PRIVATE KEY-----`
+  it('get JWK key', async () => {
+    const pubKey = `-----BEGIN PUBLIC KEY-----
+    MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE1xc5NSTs3KLltnTtuyiHYI+HeFjQ
+    SQh+4MWQvpenh1LrxQ/uvUXO0auGSp0GR5cyQLRh66HFzof3ZFV3rk4UzA==
+    -----END PUBLIC KEY-----`
     logger.debug('get pem and return jwk key')
-    const res = await getPubKeyFromPEM(wrongPEMFileContent)
-    res.status.should.equal('error')
+    const res = await getPubKeyFromPEM(pubKey)
+    logger.info('Pub key', res)
   })
 
   it('Load JWKS key from file', async () => {
