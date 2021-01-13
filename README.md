@@ -13,7 +13,13 @@ Digital ID and e-KYC are greatly simplified by using [SingPass and MyInfo](https
 
 This set of tools is prepared to integrate SingPass easier.
 
-### Limitations
+### Generate ECDH key
+
+```bash
+openssl ecparam -name P-256 -genkey -noout -out key.pem
+```
+
+### Limitations of SingPass
 
 SingPass application works only for Singaporean citizens and PR.
 
