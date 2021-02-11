@@ -67,7 +67,7 @@ const verifyPayload = async (payload, singpassPubkeyUrl, singpassPubkeyId) => {
  * @param {SingPass SAML Gov Sg} url
  */
 const fetchKeys = async (
-  url = 'https://stg-saml-internet.singpass.gov.sg/mga/sps/oauth/oauth20/jwks/SingPassOP'
+  url = 'https://stg-id.singpass.gov.sg/.well-known/keys'
 ) => {
   logger.debug('Trying to fetch public keys from ', url)
   if (!validator.isURL(url)) {

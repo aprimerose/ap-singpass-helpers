@@ -65,6 +65,12 @@ describe('SingPass helpers', () => {
     })
   })
 
+  it('fetch public keys', async () => {
+    return fetchKeys('https://stg-id.singpass.gov.sg/.well-known/keys').then(
+      keys => keys.should.be.instanceOf(Array)
+    )
+  })
+
   it('create and test nonce', () => {
     const nonce = createNonce()
     nonce.should.not.equal(null)
